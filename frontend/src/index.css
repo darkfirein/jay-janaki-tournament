@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background:
+    radial-gradient(circle at 15% 0%, rgba(168, 85, 247, 0.14), transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(34, 211, 238, 0.10), transparent 35%),
+    #050508;
+  min-height: 100vh;
+}
+
+.font-display { letter-spacing: 0.01em; }
+
+/* neon text gradient - purple to cyan */
+.neon-text {
+  background: linear-gradient(90deg, #A855F7, #EC4899, #22D3EE);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* glowing badge pill for hero banners */
+.badge-glow {
+  @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-volt/30 bg-volt/10 text-xs font-mono font-bold tracking-widest text-signal uppercase;
+}
+
+/* status pill helper */
+.pill {
+  @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold tracking-wide uppercase;
+}
+.pill-pending { @apply bg-warn/15 text-warn; }
+.pill-approved { @apply bg-signal/15 text-signal; }
+.pill-rejected { @apply bg-danger/15 text-danger; }
+.pill-winner { @apply bg-volt/15 text-volt; }
+
+.card {
+  @apply bg-panel/80 backdrop-blur-sm border border-line rounded-2xl transition-colors;
+}
+
+/* Glass card variant + pulse glow + progress bar, used on the tournament detail page redesign */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+@keyframes pulse-neon {
+  0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.2), inset 0 0 15px rgba(168, 85, 247, 0.1); }
+  50% { box-shadow: 0 0 25px rgba(168, 85, 247, 0.5), inset 0 0 25px rgba(168, 85, 247, 0.3); }
+}
+.animate-pulse-neon { animation: pulse-neon 2s infinite ease-in-out; }
+.progress-bar-fill {
+  background: linear-gradient(90deg, #A855F7, #6366F1);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px; height: 16px;
+  background: #A855F7;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px #A855F7;
+}
+
+.btn-primary {
+  @apply bg-volt hover:bg-volt/90 text-white font-semibold rounded-xl px-5 py-3 transition disabled:opacity-40 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(168,85,247,0.35)];
+}
+.btn-secondary {
+  @apply bg-transparent border border-line hover:border-volt/60 text-white font-semibold rounded-xl px-5 py-3 transition;
+}
+.input {
+  @apply w-full bg-ink border border-line rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-volt/60 focus:border-volt/60 transition;
+}
+label.field-label {
+  @apply block text-sm text-white/60 mb-1.5 font-medium;
+}
+
+/* Skeleton loading blocks — shown in place of real content while a page's
+   first data fetch is still in flight, so people see the shape of what's
+   coming instead of a blank screen or a spinner. */
+.skeleton {
+  @apply bg-line/60 rounded-lg relative overflow-hidden;
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  animation: skeleton-shimmer 1.6s infinite;
+}
+@keyframes skeleton-shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* Hide scrollbar on horizontally-scrolling pill/tab rows (tournaments page) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

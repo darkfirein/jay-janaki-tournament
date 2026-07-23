@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+backend/data.sqlite
+backend/data.sqlite-*
+backend/uploads/screenshots/*
+backend/uploads/settings/*
+!backend/uploads/screenshots/.gitkeep
+!backend/uploads/settings/.gitkeep
